@@ -4,7 +4,6 @@ class BingoBoard:
     def __init__(self, board):
         self.board = board
 
-    
     def printRows(self):
         for row in self.board:
             print(row)
@@ -53,12 +52,17 @@ while(i<len(bingo_lines)):
         board.append(line.split(' '))
         #print(board)
     else:
-        print(board)
-        all_Boards.append(BingoBoard(board))
+        print("Board being put into the list")
+        b =BingoBoard(board)
+        all_Boards.append(b)
+        b.printRows()
         board.clear()
     i += 1
 
-print(all_Boards)
+for i in range(len(all_Boards)):
+    print("Board getting pulled from the list")
+    all_Boards[i].printRows()
+
 '''
 win = False
 i = 5

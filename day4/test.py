@@ -36,9 +36,11 @@ class BingoBoard:
         return [x for x in self.board]
     
 b = BingoBoard([['48', '83', '84', '85', '3'],['98', '80', '50', '96', '91'],['18', '69', '44', '62', '15'],['20', '88', '12', '45', '28'],['8', '29', '0', '37', '27']])
+c = BingoBoard([['42', '83', '84', '85', '3'],['98', '80', '50', '96', '91'],['18', '69', '44', '62', '15'],['20', '88', '12', '45', '28'],['8', '29', '0', '37', '27']])
+
 numlist = ['28','27','15','91','3']
-b.printRows()
-print(b.checkBoard(numlist))
+
+#print(b.checkBoard(numlist))
 
 
 #result =  all(elem in list1  for elem in list2)
