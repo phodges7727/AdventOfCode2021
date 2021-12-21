@@ -1,23 +1,24 @@
 from array import *
 
 class BingoBoard:
-    def __init__(self, board):
-        self.board = board
+    def __init__(self, board, index):
+        self.bingo_board = board
+        self.boardnumber = index
 
     def printRows(self):
-        for row in self.board:
+        for row in self.bingo_board:
             print(row)
 
     def checkBoard(self,numbers):
         col = []
-        for row in self.board:
+        for row in self.bingo_board:
             #print(row)
             if(all(elem in numbers for elem in row)):
                 return True
         for i in range(5):
             col.clear()
             for j in range(5):
-                col.append(self.board[j][i])
+                col.append(self.bingo_board[j][i])
             #print("Col: ",col)
             if(all(elem in numbers for elem in col)):
                 return True
@@ -26,14 +27,16 @@ class BingoBoard:
     
     def getSum(self,numbers):
         sum = 0
-        for row in self.board:
+        for row in self.bingo_board:
             for cell in row:
                 if cell not in numbers:
                     sum += int(cell)
         return sum       
 
     def __str__(self):
-        return self.board
+        print("Printing")
+        self.printRows()
+        return "This is a board" + str(self.boardnumber)
     
 my_file = open("Day4input1.txt")
 my_input = my_file.read()
@@ -53,17 +56,20 @@ while(i<len(bingo_lines)):
         #print(board)
     else:
         print("Board being put into the list")
-        b =BingoBoard(board)
+        b =BingoBoard(board,i)
         all_Boards.append(b)
         b.printRows()
         board.clear()
     i += 1
 
+
+print(all_Boards[3])
+'''
 for i in range(len(all_Boards)):
     print("Board getting pulled from the list")
-    all_Boards[i].printRows()
+    all_Boards[i].board
 
-'''
+
 win = False
 i = 5
 while(win != True):
