@@ -1,9 +1,9 @@
 from array import *
+import time
 
 class BingoBoard:
-    def __init__(self, board, index):
+    def __init__(self, board):
         self.bingo_board = board
-        self.boardnumber = index
 
     def printRows(self):
         for row in self.bingo_board:
@@ -14,13 +14,21 @@ class BingoBoard:
         for row in self.bingo_board:
             #print(row)
             if(all(elem in numbers for elem in row)):
+                #print("winning nums: ",numbers)
+                #print("Winning board: ")
+                #self.printRows()
+                #print("Row win: ", row)
                 return True
         for i in range(5):
-            col.clear()
+            col = []
             for j in range(5):
                 col.append(self.bingo_board[j][i])
             #print("Col: ",col)
             if(all(elem in numbers for elem in col)):
+                #print("winning nums: ",numbers)
+                #print("Winning board: ")
+                #self.printRows()
+                print("Col win: " ,col)
                 return True
         return False
 
@@ -41,39 +49,27 @@ class BingoBoard:
 my_file = open("Day4input1.txt")
 my_input = my_file.read()
 bingo_lines = my_input.splitlines()
-#print(bingo_lines)
+bingo_numbers = [int(x) for x in bingo_lines[0].split(',')]
+bingo_lines.remove(bingo_lines[0])
+bingo_lines.remove(bingo_lines[0])
 
-bingo_numbers = ['40','0','66','92','18'] + bingo_lines[0].split(',')
-#print(bingo_numbers)
-
+all_boards = []
 board = []
-all_Boards = []
-i=2
-while(i<len(bingo_lines)):
-    if (bingo_lines[i] != ''):
-        line = " ".join(bingo_lines[i].split())
-        board.append(line.split(' '))
-        #print(board)
+for line in bingo_lines:
+    if(line != ''):
+        row = [int(x) for x in line.split()]
+        board.append(row)
     else:
-        print("Board being put into the list")
-        b =BingoBoard(board,i)
-        all_Boards.append(b)
-        b.printRows()
-        board.clear()
-    i += 1
+        all_boards.append(BingoBoard(board))
+        board = []
 
 
-print(all_Boards[3])
-'''
-for i in range(len(all_Boards)):
-    print("Board getting pulled from the list")
-    all_Boards[i].board
 
 
 win = False
-i = 5
+i = 0
 while(win != True):
-    for b in all_Boards:
+    for b in all_boards:
         if(b.checkBoard(bingo_numbers[0:i])):
             #b.printRows()
             winning_board = b
@@ -85,12 +81,11 @@ while(win != True):
 print(bingo_numbers[0:i])
 winning_board.printRows()
 
+'''
 print(winning_board.getSum(bingo_numbers[0:i]))
 print(bingo_numbers[i-1])  
 print(int(bingo_numbers[i-1])*int(winning_board.getSum(bingo_numbers[0:i])))
             
-for b in all_Boards:
-    b.printRows()
 
 '''
 

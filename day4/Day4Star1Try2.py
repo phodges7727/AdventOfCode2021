@@ -20,8 +20,8 @@ my_file = open("Day4input1.txt")
 my_input = my_file.read()
 bingo_lines = my_input.splitlines()
 #print(bingo_lines)
-
-bingo_numbers = ['57','80','91','12','40'] + bingo_lines[0].split(',')
+#['57','80','91','12','40'] +
+bingo_numbers =  bingo_lines[0].split(',')
 #print(bingo_numbers)
 
 board = []
